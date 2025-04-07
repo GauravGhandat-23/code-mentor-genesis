@@ -1,5 +1,5 @@
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 interface GroqClientOptions {
   apiKey?: string;
@@ -14,13 +14,31 @@ export const useGroqClient = (options: GroqClientOptions = {}) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Load saved API key and model from localStorage on mount
+  useEffect(() => {
+    const savedApiKey = localStorage.getItem("groqApiKey");
+    const savedModel = localStorage.getItem("groqModel");
+    
+    if (savedApiKey) {
+      setApiKey(savedApiKey);
+    }
+    
+    if (savedModel) {
+      setModel(savedModel);
+    }
+  }, []);
+
   const makeRequest = useCallback(async (
     prompt: string,
     systemPrompt?: string,
     temperature: number = 0.7
   ) => {
-    if (!apiKey) {
-      setError("API key is required. Please set an API key.");
+    // First check if we have an API key either from props or localStorage
+    const currentApiKey = apiKey || localStorage.getItem("groqApiKey");
+    const currentModel = model || localStorage.getItem("groqModel") || DEFAULT_MODEL;
+
+    if (!currentApiKey) {
+      setError("API key is required. Please set an API key in Settings.");
       return null;
     }
 
@@ -28,9 +46,9 @@ export const useGroqClient = (options: GroqClientOptions = {}) => {
     setError(null);
 
     try {
-      // In a real application, this would be a call to the Groq API
+      // In a real implementation, this would be a call to the Groq API
       // This is a mock implementation for demo purposes
-      console.log(`Making request to Groq API with model: ${model}`);
+      console.log(`Making request to Groq API with model: ${currentModel}`);
       console.log(`System prompt: ${systemPrompt}`);
       console.log(`User prompt: ${prompt}`);
       
@@ -42,7 +60,7 @@ export const useGroqClient = (options: GroqClientOptions = {}) => {
         choices: [
           {
             message: {
-              content: `This is a simulated response from Groq API using the ${model} model. In a real implementation, this would be an actual response from the API based on your prompt: "${prompt}".`,
+              content: `This is a simulated response from Groq API using the ${currentModel} model. In a real implementation, this would be an actual response from the API based on your prompt: "${prompt}".`,
             },
           },
         ],
@@ -64,5 +82,6 @@ export const useGroqClient = (options: GroqClientOptions = {}) => {
     isLoading,
     error,
     currentModel: model,
+    hasApiKey: Boolean(apiKey || localStorage.getItem("groqApiKey")),
   };
 };

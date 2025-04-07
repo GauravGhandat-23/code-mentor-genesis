@@ -10,7 +10,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import { Menu, Settings } from "lucide-react";
 
 const UserNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,7 +35,7 @@ const UserNavbar = () => {
 
   const userNavOptions = [
     { name: "Profile", path: "/profile" },
-    { name: "Settings", path: "/settings" },
+    { name: "Settings", path: "/settings", icon: Settings },
     { name: "Home", path: "/" },
   ];
 
@@ -83,7 +83,10 @@ const UserNavbar = () => {
               <DropdownMenuContent align="end">
                 {userNavOptions.map((option, index) => (
                   <DropdownMenuItem key={index} asChild>
-                    <Link to={option.path}>{option.name}</Link>
+                    <Link to={option.path} className="flex items-center gap-2">
+                      {option.icon && <option.icon className="h-4 w-4" />}
+                      {option.name}
+                    </Link>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
@@ -120,8 +123,9 @@ const UserNavbar = () => {
                       <Link
                         key={index}
                         to={option.path}
-                        className="block text-lg font-medium text-slate-800 hover:text-blue-600"
+                        className="flex items-center gap-2 text-lg font-medium text-slate-800 hover:text-blue-600"
                       >
+                        {option.icon && <option.icon className="h-4 w-4" />}
                         {option.name}
                       </Link>
                     ))}

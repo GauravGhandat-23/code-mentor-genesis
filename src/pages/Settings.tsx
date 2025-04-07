@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { UserNavbar } from "@/components/UserNavbar";
+import UserNavbar from "@/components/UserNavbar";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";

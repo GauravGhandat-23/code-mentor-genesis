@@ -26,17 +26,9 @@ const Index = () => {
             <Button 
               size="lg"
               className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8"
-              onClick={() => navigate("/signup")}
+              onClick={() => navigate("/dashboard")}
             >
               Get Started
-            </Button>
-            <Button 
-              size="lg"
-              variant="outline"
-              className="border-blue-200 text-blue-700 hover:bg-blue-50"
-              onClick={() => navigate("/login")}
-            >
-              Log In
             </Button>
           </div>
         </section>
@@ -98,7 +90,7 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Testimonials/CTA Section */}
+        {/* CTA Section */}
         <section className="bg-white py-20">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Ready to Boost Your Skills?</h2>
@@ -108,7 +100,7 @@ const Index = () => {
             <Button 
               size="lg"
               className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8"
-              onClick={() => navigate("/signup")}
+              onClick={() => navigate("/dashboard")}
             >
               Start Your First Test
             </Button>

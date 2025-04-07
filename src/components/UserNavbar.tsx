@@ -36,7 +36,7 @@ const UserNavbar = () => {
   const userNavOptions = [
     { name: "Profile", path: "/profile" },
     { name: "Settings", path: "/settings" },
-    { name: "Logout", path: "/logout" },
+    { name: "Home", path: "/" },
   ];
 
   return (

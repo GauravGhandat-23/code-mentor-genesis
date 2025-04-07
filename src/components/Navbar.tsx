@@ -57,14 +57,9 @@ const Navbar = () => {
           </nav>
           
           <div className="hidden md:flex items-center space-x-4">
-            <Link to="/login">
-              <Button variant="ghost" className="text-slate-600 hover:text-blue-600 hover:bg-blue-50">
-                Log In
-              </Button>
-            </Link>
-            <Link to="/signup">
+            <Link to="/dashboard">
               <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                Sign Up
+                Get Started
               </Button>
             </Link>
           </div>
@@ -90,14 +85,9 @@ const Navbar = () => {
                     </Link>
                   ))}
                   <div className="pt-4 space-y-4">
-                    <Link to="/login">
-                      <Button variant="outline" className="w-full">
-                        Log In
-                      </Button>
-                    </Link>
-                    <Link to="/signup">
+                    <Link to="/dashboard">
                       <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                        Sign Up
+                        Get Started
                       </Button>
                     </Link>
                   </div>
